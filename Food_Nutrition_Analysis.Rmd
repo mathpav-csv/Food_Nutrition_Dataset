@@ -21,20 +21,32 @@ setwd("C:/Users/Vivek/Documents/Data Analysis/R Programming/Data Analyst In R/Im
 library(tidyverse)
 library(readr)
 library(readxl)
+library(stringi)
+library(stringr)
 
 food_data <- read_excel("FoodNutrition.xlsx")
 
 head(food_data)
 
 glimpse(food_data)
+
+sum(na.rm = TRUE)
+
 ```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r }
+
+food_data1 <- separate_rows(food_data,Shrt_Desc,sep = ",")
+
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+butter <- str_detect(food_data1$Shrt_Desc,pattern = "BUTTER")
+food_data1$Shrt_Desc[butter]
+
+```
